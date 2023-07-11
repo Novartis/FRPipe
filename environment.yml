@@ -1,0 +1,11 @@
+channels:
+  - defaults
+  - conda-forge
+  - main
+dependencies:
+  - matplotlib
+  - pandas
+  - numpy
+  - natsort
+  - pip:
+      - nmrglue

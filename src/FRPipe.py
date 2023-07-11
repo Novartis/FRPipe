@@ -3,7 +3,6 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import nmrglue as ng
-import urllib
 import pandas
 import re
 import glob
@@ -11,14 +10,10 @@ import os
 import numpy
 import csv
 import traceback
-from scipy.interpolate import UnivariateSpline
 import argparse
 import sys
 import warnings
-import requests
 import natsort
-from PIL import Image
-from io import BytesIO
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 warnings.filterwarnings("ignore")
@@ -76,10 +71,12 @@ class parameters:
                         help="number of expected signals in reference")
 
     parser.add_argument("-rw", "--reporter_search_window_size", type=str, default=None,
-                        help="search window in ppm for reporter signals in competition experiments. Default is 10*median reference peak width.")
+                        help="search window in ppm for reporter signals in competition experiments. "
+                             "Default is 10*median reference peak width.")
 
     parser.add_argument("-cw", "--control_search_window_size", type=str, default=None,
-                        help="search window in ppm for control signals in competition experiments. Default is 10*median control peak width.")
+                        help="search window in ppm for control signals in competition experiments. "
+                             "Default is 10*median control peak width.")
 
     parser.add_argument("-pw", "--proton_window_borders", type=str, default=None,
                         help='borders of proton window (e.g. "-1, 10")')
@@ -119,7 +116,8 @@ class parameters:
     cint = args.confidence
     if cint > 0.5:
         sys.exit(
-            "fraction for confidence interval is bigger than 0.5. This does not make sense. Please choose a smaller value.")
+            "fraction for confidence interval is bigger than 0.5. This does not make sense. "
+            "Please choose a smaller value.")
 
     if args.reporter_ppm:
         rep_ppm = args.reporter_ppm
